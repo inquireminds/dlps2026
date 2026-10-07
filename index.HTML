@@ -3,191 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grade 7/8 Math & Science | David Lewis P.S.</title>
-    <!-- Google Fonts for Modern Typography -->
+    <title>David Lewis P.S. | Intermediate Division (Grades 7 & 8)</title>
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lexend:wght@600;700;800&display=swap" rel="stylesheet">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            top: 0px !important;
-            position: static !important;
-        }
+        body { top: 0px !important; position: static !important; font-family: 'Plus Jakarta Sans', sans-serif; }
         html { scroll-behavior: smooth; }
         
-        /* Hide Google Translate Banner Overlay */
-        .goog-te-banner-frame, .skiptranslate, #goog-gt-tt { display: none !important; }
+        /* Google Translate Container Hiding Overlays */
+        .goog-te-banner-frame, .skiptranslate, #goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
         .goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
-        
-        /* Custom Gradient & Glassmorphism */
-        .hero-gradient {
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0284c7 100%);
+        #google_translate_element { display: none !important; }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #1d4ed8 100%);
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-        }
-        .accent-gradient-orange {
-            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-        }
-        .accent-gradient-blue {
-            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+        .gold-accent {
+            color: #facc15;
         }
     </style>
+
+    <!-- Google Translate Script Implementation -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'zh-CN,zh-TW,ko,tr,tl,ta,en',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+
+        function switchLanguage(langCode) {
+            var translateSelect = document.querySelector(".goog-te-combo");
+            if (translateSelect) {
+                translateSelect.value = langCode;
+                translateSelect.dispatchEvent(new Event("change"));
+            } else {
+                /* Retry if Google Translate element hasn't finished loading */
+                setTimeout(function() {
+                    var retrySelect = document.querySelector(".goog-te-combo");
+                    if (retrySelect) {
+                        retrySelect.value = langCode;
+                        retrySelect.dispatchEvent(new Event("change"));
+                    }
+                }, 500);
+            }
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body class="bg-slate-100 text-slate-900 antialiased selection:bg-amber-300 selection:text-slate-900">
 
-    <!-- TOP HEADER / LANGUAGE BAR -->
+    <!-- TOP HEADER / BRANDING & TRANSLATION BAR -->
     <header class="sticky top-0 z-50 bg-slate-900 text-white shadow-xl border-b border-slate-800">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-3">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
+            
+            <!-- SCHOOL BRANDING & MASCOT LOGO -->
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-amber-400 flex items-center justify-center text-slate-900 font-extrabold text-xl shadow-md">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                </div>
+                <img src="https://schoolweb.tdsb.on.ca/portals/davidlewis/images/DavidLewisPS_logo.png" 
+                     onerror="this.onerror=null; this.src='https://www.tdsb.on.ca/Portals/0/Community/Mascots/Lions.png';" 
+                     alt="David Lewis P.S. Lewis Lion Mascot" 
+                     class="w-12 h-12 rounded-full border-2 border-amber-400 bg-white p-0.5 shadow-md object-contain">
                 <div>
-                    <h1 class="font-extrabold text-base sm:text-lg leading-tight tracking-tight text-white">David Lewis Public School</h1>
-                    <p class="text-xs text-amber-300 font-semibold">Grade 7 & 8 Math & Science • TDSB</p>
+                    <!-- Slightly Bigger Font for David Lewis P.S. -->
+                    <h1 class="font-extrabold text-xl sm:text-2xl tracking-tight text-white font-['Lexend'] leading-tight">
+                        David Lewis Public School
+                    </h1>
+                    <p class="text-xs text-amber-300 font-semibold flex items-center gap-1.5">
+                        <span>Intermediate Division • Grades 7 & 8</span>
+                        <span>•</span>
+                        <span class="italic">"Participate with Pride"</span>
+                    </p>
                 </div>
             </div>
 
-            <!-- LANGUAGE TRANSLATION BUTTONS -->
-            <div class="flex flex-wrap items-center gap-1.5 bg-slate-800/90 p-2 rounded-xl border border-slate-700">
-                <span class="text-xs font-bold text-slate-300 mr-1 flex items-center gap-1">
+            <!-- FIXED TRANSLATION BUTTONS -->
+            <div class="flex flex-wrap items-center gap-1.5 bg-slate-800 p-2 rounded-2xl border border-slate-700 text-xs">
+                <span class="font-bold text-slate-300 mr-1 flex items-center gap-1.5">
                     <i class="fa-solid fa-language text-amber-400 text-sm"></i> Translate:
                 </span>
-                <button onclick="changeLanguage('en')" class="px-2.5 py-1 text-xs font-bold rounded-lg bg-amber-400 text-slate-950 hover:bg-amber-300 transition shadow-sm">EN</button>
-                <button onclick="changeLanguage('tr')" class="px-2.5 py-1 text-xs font-bold rounded-lg bg-slate-700 text-white hover:bg-slate-600 transition border border-slate-600">🇹🇷 Türkçe</button>
-                <button onclick="changeLanguage('bn')" class="px-2.5 py-1 text-xs font-bold rounded-lg bg-slate-700 text-white hover:bg-slate-600 transition border border-slate-600">🇧🇩 বাংলা</button>
-                <button onclick="changeLanguage('ta')" class="px-2.5 py-1 text-xs font-bold rounded-lg bg-slate-700 text-white hover:bg-slate-600 transition border border-slate-600">🇮🇳 தமிழ்</button>
-                <button onclick="changeLanguage('zh-CN')" class="px-2.5 py-1 text-xs font-bold rounded-lg bg-slate-700 text-white hover:bg-slate-600 transition border border-slate-600">🇨🇳 中文</button>
+                <button onclick="switchLanguage('en')" class="px-2.5 py-1 font-bold rounded-xl bg-amber-400 text-slate-950 hover:bg-amber-300 transition shadow-sm">EN</button>
+                <button onclick="switchLanguage('zh-CN')" class="px-2.5 py-1 font-bold rounded-xl bg-slate-700 text-white hover:bg-slate-600 transition border border-slate-600">🇨🇳 普通话 (Mandarin)</button>
+                <button onclick="switchLanguage('zh-TW')" class="px-2.5 py-1 font-bold rounded-xl bg-slate-700 text-white hover:bg-slate-600 transition border border-slate-600">🇭🇰 粵語 (Cantonese)</button>
+                <button onclick="switchLanguage('ko')" class="px-2.5 py-1 font-bold rounded-xl bg-slate-700 text-white hover:bg-slate-600 transition border border-slate-600">🇰🇷 한국어</button>
+                <button onclick="switchLanguage('tr')" class="px-2.5 py-1 font-bold rounded-xl bg-slate-700 text-white hover:bg-slate-600 transition border border-slate-600">🇹🇷 Türkçe</button>
+                <button onclick="switchLanguage('tl')" class="px-2.5 py-1 font-bold rounded-xl bg-slate-700 text-white hover:bg-slate-600 transition border border-slate-600">🇵🇭 Tagalog</button>
+                <button onclick="switchLanguage('ta')" class="px-2.5 py-1 font-bold rounded-xl bg-slate-700 text-white hover:bg-slate-600 transition border border-slate-600">🇮🇳 தமிழ்</button>
             </div>
         </div>
         <!-- Hidden Google Translate Element -->
-        <div id="google_translate_element" class="hidden"></div>
+        <div id="google_translate_element"></div>
     </header>
 
-    <!-- HERO SECTION / WELCOME & PHILOSOPHY -->
-    <section class="hero-gradient text-white py-12 sm:py-16 px-4 relative overflow-hidden shadow-2xl">
-        <div class="max-w-4xl mx-auto space-y-8 relative z-10">
+    <!-- HERO / WELCOME SECTION -->
+    <section class="hero-bg text-white py-12 sm:py-16 px-4 relative shadow-2xl">
+        <div class="max-w-5xl mx-auto space-y-8">
             
-            <div class="text-center space-y-3">
-                <span class="inline-flex items-center gap-2 bg-amber-400 text-slate-950 text-xs sm:text-sm font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-lg">
-                    <i class="fa-solid fa-star"></i> Meet the Teacher Night 2026–2027
-                </span>
-                <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
-                    Real Problems. Big Thinking.<br><span class="text-amber-300">Every Student.</span>
-                </h2>
-            </div>
-            
-            <!-- TEACHER INTRO CARD -->
-            <div class="bg-slate-900/90 border-2 border-amber-400/40 p-6 sm:p-8 rounded-3xl shadow-2xl space-y-6">
-                <div class="flex items-center space-x-3 text-amber-300">
-                    <i class="fa-solid fa-chalkboard-user text-2xl sm:text-3xl"></i>
-                    <h3 class="text-xl sm:text-2xl font-bold text-white">Welcome Parents & Guardians!</h3>
+            <div class="flex flex-col md:flex-row items-center gap-6 bg-slate-900/80 p-6 sm:p-8 rounded-3xl border border-amber-400/30 backdrop-blur-md">
+                <div class="flex-shrink-0 text-center">
+                    <img src="https://schoolweb.tdsb.on.ca/portals/davidlewis/images/DavidLewisPS_logo.png" 
+                         onerror="this.onerror=null; this.src='https://www.tdsb.on.ca/Portals/0/Community/Mascots/Lions.png';" 
+                         alt="David Lewis Lion Mascot" 
+                         class="w-28 h-28 sm:w-36 sm:h-36 mx-auto rounded-2xl border-4 border-amber-400 bg-white p-2 shadow-xl object-contain">
+                    <span class="inline-block mt-3 bg-amber-400 text-slate-950 font-black text-xs px-3 py-1 rounded-full uppercase tracking-wider">
+                        Home of the Lewis Lions
+                    </span>
                 </div>
                 
-                <p class="text-slate-100 text-base sm:text-lg leading-relaxed font-normal">
-                    I have been teaching at <strong class="text-amber-300 font-bold">David Lewis Public School for almost two decades</strong>, and I am thrilled to be teaching your child Math and Science this year. More importantly, I believe in nurturing their curiosity, building their self-confidence, and teaching them self-advocacy.
-                </p>
-                
-                <div class="p-5 bg-amber-400 text-slate-950 rounded-2xl shadow-lg border-l-8 border-slate-900">
-                    <p class="text-base sm:text-lg font-black tracking-wide leading-snug">
-                        "I BELIEVE THAT ALL MY STUDENTS CAN AND WILL – BELIEVE THAT THE SKY IS THEIR LIMIT."
+                <div class="space-y-4 text-center md:text-left">
+                    <div class="inline-flex items-center gap-2 bg-blue-900/90 border border-blue-400/40 text-amber-300 text-xs font-bold px-3.5 py-1 rounded-full">
+                        <i class="fa-solid fa-users"></i> TDSB Intermediate Division Team
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold font-['Lexend'] leading-tight">
+                        Welcome Parents & Guardians to <br><span class="text-amber-300">Intermediate Curriculum Night</span>
+                    </h2>
+                    <p class="text-slate-200 text-sm sm:text-base leading-relaxed">
+                        In the Intermediate Division at David Lewis Public School, our teaching team works collaboratively to nurture curious, capable, and confident learners. We believe every student can achieve excellence when provided with high expectations, robust support, and an environment that fosters self-advocacy, initiative, and a growth mindset.
                     </p>
+                </div>
+            </div>
+
+            <!-- CORE PHILOSOPHY CARDS -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-slate-800/90 p-5 rounded-2xl border border-slate-700 space-y-2">
+                    <div class="flex items-center space-x-3 text-amber-400">
+                        <i class="fa-solid fa-comment-dots text-xl"></i>
+                        <h3 class="font-bold text-white text-base">Self-Advocacy</h3>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">We guide students to ask questions, seek clarification, and express their learning needs independently as they prepare for high school.</p>
+                </div>
+
+                <div class="bg-slate-800/90 p-5 rounded-2xl border border-slate-700 space-y-2">
+                    <div class="flex items-center space-x-3 text-amber-400">
+                        <i class="fa-solid fa-brain text-xl"></i>
+                        <h3 class="font-bold text-white text-base">Growth Mindset</h3>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">Mistakes are treated as valuable learning opportunities. We focus on perseverance, reflection, and continuous personal progress.</p>
+                </div>
+
+                <div class="bg-slate-800/90 p-5 rounded-2xl border border-slate-700 space-y-2">
+                    <div class="flex items-center space-x-3 text-amber-400">
+                        <i class="fa-solid fa-user-shield text-xl"></i>
+                        <h3 class="font-bold text-white text-base">Responsibility & Initiative</h3>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">Students are encouraged to take ownership of their organizational habits, complete tasks on time, and actively participate with pride.</p>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- NAVIGATION BAR -->
-    <nav class="bg-white border-b-2 border-slate-200 sticky top-[62px] z-40 shadow-md">
-        <div class="max-w-4xl mx-auto flex justify-between overflow-x-auto text-xs sm:text-sm font-extrabold text-slate-700">
-            <a href="#framework" class="py-4 px-3 sm:px-4 border-b-4 border-transparent hover:border-amber-500 hover:text-amber-600 transition whitespace-nowrap"><i class="fa-solid fa-shapes mr-1.5 text-amber-500"></i>5 Class Ideas</a>
-            <a href="#curriculum" class="py-4 px-3 sm:px-4 border-b-4 border-transparent hover:border-blue-600 hover:text-blue-600 transition whitespace-nowrap"><i class="fa-solid fa-book-open mr-1.5 text-blue-600"></i>Curriculum Plans</a>
-            <a href="#sdg" class="py-4 px-3 sm:px-4 border-b-4 border-transparent hover:border-emerald-600 hover:text-emerald-600 transition whitespace-nowrap"><i class="fa-solid fa-globe mr-1.5 text-emerald-600"></i>SDGs & Home Try</a>
-            <a href="#support" class="py-4 px-3 sm:px-4 border-b-4 border-transparent hover:border-purple-600 hover:text-purple-600 transition whitespace-nowrap"><i class="fa-solid fa-hand-holding-heart mr-1.5 text-purple-600"></i>Parent Support</a>
+    <!-- NAVIGATION MENU BAR -->
+    <nav class="bg-white border-b border-slate-200 sticky top-[68px] z-40 shadow-sm">
+        <div class="max-w-5xl mx-auto flex justify-between overflow-x-auto text-xs sm:text-sm font-bold text-slate-700">
+            <a href="#routines" class="py-4 px-4 border-b-2 border-transparent hover:border-blue-600 hover:text-blue-600 transition whitespace-nowrap"><i class="fa-solid fa-clock mr-1.5 text-blue-600"></i>Routines & Expectations</a>
+            <a href="#pedagogy" class="py-4 px-4 border-b-2 border-transparent hover:border-amber-500 hover:text-amber-600 transition whitespace-nowrap"><i class="fa-solid fa-shapes mr-1.5 text-amber-500"></i>TDSB Learning Frameworks</a>
+            <a href="#plans" class="py-4 px-4 border-b-2 border-transparent hover:border-emerald-600 hover:text-emerald-600 transition whitespace-nowrap"><i class="fa-solid fa-file-pdf mr-1.5 text-emerald-600"></i>Long Range Plans (PDF)</a>
+            <a href="#fermi" class="py-4 px-4 border-b-2 border-transparent hover:border-purple-600 hover:text-purple-600 transition whitespace-nowrap"><i class="fa-solid fa-lightbulb mr-1.5 text-purple-600"></i>SDG & Fermi Questions</a>
         </div>
     </nav>
 
     <!-- MAIN CONTENT CONTAINER -->
-    <main class="max-w-4xl mx-auto px-4 py-10 space-y-12">
+    <main class="max-w-5xl mx-auto px-4 py-10 space-y-12">
 
-        <!-- SECTION 1: FIVE CORE LEARNING IDEAS -->
-        <section id="framework" class="space-y-6">
-            <div class="border-l-8 border-amber-500 pl-4 py-1">
-                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Five Ideas That Shape Everything We Do</h2>
-                <p class="text-slate-600 text-sm sm:text-base font-semibold">How learning is structured in Grade 7 & 8 Science and Math.</p>
+        <!-- SECTION 1: ROUTINES & EXPECTATIONS -->
+        <section id="routines" class="space-y-6">
+            <div class="border-l-8 border-blue-600 pl-4 py-1">
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 font-['Lexend']">School Routines & Expectations</h2>
+                <p class="text-slate-600 text-xs sm:text-sm font-semibold">Supporting smooth transitions, work completion, and student success across Grade 7 & 8.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <!-- SDG Card -->
-                <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-sm hover:border-amber-400 hover:shadow-lg transition space-y-3">
-                    <div class="flex items-center space-x-3">
-                        <span class="bg-amber-100 text-amber-900 font-black text-xs px-3 py-1 rounded-lg border border-amber-300">SDGs</span>
-                        <h3 class="font-bold text-slate-900 text-lg">Learning with World Goals</h3>
+                <!-- Locker Policy -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-sm space-y-3">
+                    <div class="flex items-center space-x-3 text-blue-700">
+                        <i class="fa-solid fa-lock text-2xl"></i>
+                        <h3 class="font-bold text-slate-900 text-lg">Locker Use Routine</h3>
                     </div>
-                    <p class="text-sm text-slate-700 leading-relaxed">Units link directly to the UN's 17 Sustainable Development Goals (e.g., clean water, climate action) so students understand the real-world impact of their learning.</p>
-                    <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs font-semibold text-amber-900">
-                        <strong>At Home:</strong> Your child may ask about water or energy consumption at home.
-                    </div>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                        Lockers are accessed specifically during morning entry, before/after recess, and at dismissal time. Keeping outerwear and backpacks in lockers ensures a safe, clutter-free classroom environment focused on instruction.
+                    </p>
                 </div>
 
-                <!-- BTC Card -->
-                <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-sm hover:border-blue-500 hover:shadow-lg transition space-y-3">
-                    <div class="flex items-center space-x-3">
-                        <span class="bg-blue-100 text-blue-900 font-black text-xs px-3 py-1 rounded-lg border border-blue-300">BTC</span>
-                        <h3 class="font-bold text-slate-900 text-lg">Building Thinking Classrooms</h3>
+                <!-- Prepared to Learn -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-sm space-y-3">
+                    <div class="flex items-center space-x-3 text-amber-600">
+                        <i class="fa-solid fa-briefcase text-2xl"></i>
+                        <h3 class="font-bold text-slate-900 text-lg">Prepared to Learn Daily</h3>
                     </div>
-                    <p class="text-sm text-slate-700 leading-relaxed">Research-based math teaching (Dr. Peter Liljedahl). Students collaborate on tasks standing up at whiteboards in small, randomly selected groups.</p>
-                    <div class="bg-blue-50 p-3 rounded-xl border border-blue-200 text-xs font-semibold text-blue-900">
-                        <strong>At Home:</strong> "We stood and solved a problem" means deep active thinking took place!
-                    </div>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                        Students are expected to arrive in class on time with basic learning supplies: writing utensils, lined paper/notebooks, geometry tools, and charged TDSB Chromebooks ready for learning activities.
+                    </p>
                 </div>
 
-                <!-- 21C Card -->
-                <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-sm hover:border-purple-500 hover:shadow-lg transition space-y-3">
-                    <div class="flex items-center space-x-3">
-                        <span class="bg-purple-100 text-purple-900 font-black text-xs px-3 py-1 rounded-lg border border-purple-300">21C</span>
-                        <h3 class="font-bold text-slate-900 text-lg">21st Century Skills</h3>
+                <!-- Assignment Deadlines -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-sm space-y-3">
+                    <div class="flex items-center space-x-3 text-emerald-600">
+                        <i class="fa-solid fa-calendar-check text-2xl"></i>
+                        <h3 class="font-bold text-slate-900 text-lg">Finishing Assignments on Time</h3>
                     </div>
-                    <p class="text-sm text-slate-700 leading-relaxed">Fostering critical thinking, creativity, communication, digital literacy, and self-directed learning skills as outlined in the Ontario curriculum.</p>
-                    <div class="bg-purple-50 p-3 rounded-xl border border-purple-200 text-xs font-semibold text-purple-900">
-                        <strong>At Home:</strong> Ask your child: <em>"How did you figure that out?"</em>
-                    </div>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                        Timely submission of classwork and inquiry projects develops strong time-management skills. Students are coached on breaking down larger projects and reaching out for guidance prior to due dates.
+                    </p>
                 </div>
 
-                <!-- TEAM Card -->
-                <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-sm hover:border-emerald-500 hover:shadow-lg transition space-y-3">
-                    <div class="flex items-center space-x-3">
-                        <span class="bg-emerald-100 text-emerald-900 font-black text-xs px-3 py-1 rounded-lg border border-emerald-300">TEAM</span>
-                        <h3 class="font-bold text-slate-900 text-lg">Active Collaboration</h3>
+                <!-- Learning Skills & Motto -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-sm space-y-3">
+                    <div class="flex items-center space-x-3 text-purple-600">
+                        <i class="fa-solid fa-award text-2xl"></i>
+                        <h3 class="font-bold text-slate-900 text-lg">Learning Skills & School Motto</h3>
                     </div>
-                    <p class="text-sm text-slate-700 leading-relaxed">Students explain ideas, listen actively, and build on each other's work. Every student has a role, while remaining assessed on individual growth.</p>
-                    <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-200 text-xs font-semibold text-emerald-900">
-                        <strong>Assessment:</strong> Teamwork builds insight; individual achievement is evaluated independently.
-                    </div>
-                </div>
-
-                <!-- UDL Card (Full Width) -->
-                <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-sm hover:border-rose-500 hover:shadow-lg transition space-y-3 md:col-span-2">
-                    <div class="flex items-center space-x-3">
-                        <span class="bg-rose-100 text-rose-900 font-black text-xs px-3 py-1 rounded-lg border border-rose-300">UDL</span>
-                        <h3 class="font-bold text-slate-900 text-lg">Universal Design for Learning</h3>
-                    </div>
-                    <p class="text-sm text-slate-700 leading-relaxed">Lessons are designed so every student can succeed right from the start. Students have options in how they learn and demonstrate understanding (writing, speaking, drawing, building, video).</p>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                        We actively reinforce Ontario Learning Skills (Responsibility, Organization, Independent Work, Collaboration, Initiative, Self-Regulation) under our school motto: <strong>"Participate with Pride"</strong>.
+                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 2: CURRICULUM LONG RANGE PLANS -->
-        <section id="curriculum" class="space-y-6">
-            <div class="border-l-8 border-blue-600 pl-4 py-1">
-                <h2 class="text-2xl sm:text-3xl
+        <!-- SECTION 2: TDSB PEDAGOGY & FRAMEWORKS -->
+        <section id="pedagogy" class="space-y-6">
+            <div class="border-l-8 border-amber-500 pl-4 py-1">
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 font-['Lexend']">Key Pedagogical Frameworks</h2>
+                <p class="text-slate-600 text-xs sm:text-sm font-semibold">How learning is structured in our TDSB intermediate classrooms.</p>
+            </div>
 
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <!-- BTC -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-sm space-y-3">
+                    <div class="flex items-center space-x-3">
+                        <span class="bg-amber-100 text-amber-900 font-black text-xs px-3 py-1 rounded-lg">BTC</span>
+                        <h3 class="font-bold text-slate-900 text-lg">Building Thinking Classrooms</h3>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-700
